@@ -50,37 +50,35 @@ void loop() {
 }
 
 String updateClockTime(unsigned long epochTime) {
-  String clockTime= "TIME:00:00:00";
+  String clockTime= "TIME:";
   byte _second, _minute, _hour;
 
   _second = second(epochTime);
   _minute = minute(epochTime);
   _hour = hour(epochTime);
 
-  clockTime[12] = _second % 10 + 48;
-  clockTime[11] = _second / 10 + 48;
-  clockTime[9] = _minute % 10 + 48;
-  clockTime[8] = _minute / 10 + 48;
-  clockTime[6] = _hour % 10 + 48;
-  clockTime[5] = _hour / 10 + 48;
+  clockTime.concat(_hour);
+  clockTime.concat(":");
+  clockTime.concat(_minute);
+  clockTime.concat(":");
+  clockTime.concat(_second);
 
   return clockTime;
 }
 
 String updateDateTime(unsigned long epochTime) {
-  String dateTime = "DATE:00/00/2000";
+  String dateTime = "DATE:";
   byte  _day, _month, _year;
 
   _day = day(epochTime);
   _month = month(epochTime);
   _year = year(epochTime);
 
-  dateTime[14] = (_year % 10) % 10 + 48;
-  dateTime[13] = (_year / 10) % 10 + 48;
-  dateTime[9] = _month % 10 + 48;
-  dateTime[8] = _month / 10 + 48;
-  dateTime[6] = _day % 10 + 48;
-  dateTime[5] = _day / 10 + 48;
+  dateTime.concat(_day);
+  dateTime.concat("/");
+  dateTime.concat(_month);
+  dateTime.concat("/");
+  dateTime.concat(_year);
 
   return dateTime;
 }
